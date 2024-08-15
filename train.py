@@ -149,8 +149,12 @@ def main(_argv):
                 for name in freeze_layers:
                     freeze = model.get_layer(name)
                     unfreeze_all(freeze)
+        inx = 0
         for image_data, target in trainset:
+            inx += 1
             train_step(image_data, target)
+            if inx > 20:
+                return
         for image_data, target in testset:
             test_step(image_data, target)
         model.save_weights("./checkpoints/yolov4")
