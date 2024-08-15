@@ -78,6 +78,7 @@ def main(_argv):
 
     # define training step function
     # @tf.function
+    @tf.function
     def train_step(image_data, target):
         with tf.GradientTape() as tape:
             pred_result = model(image_data, training=True)
